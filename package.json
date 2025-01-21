@@ -11,7 +11,11 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
-    "supabase:link": "supabase link --project-ref ipqkaqocakznyomunvxd"
+    "supabase:link": "supabase link --project-ref ipqkaqocakznyomunvxd",
+    "db:migrate:new": "supabase migration new",
+    "db:reset": "supabase db reset --linked",
+    "db:seed": "node --env-file=.env database/seed.js",
+    "supabase:types": "npx supabase gen types typescript --project-id ipqkaqocakznyomunvxd --schema public > database/types.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.47.16",

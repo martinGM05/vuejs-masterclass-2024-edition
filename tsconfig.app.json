@@ -1,11 +1,10 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/pages/...[catchAll].vue", "typed-router.d.ts"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/pages/...[catchAll].vue", "typed-router.d.ts", "database/types.ts"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "moduleResolution": "bundler",
-
     "paths": {
       "@/*": ["./src/*"]
     }
