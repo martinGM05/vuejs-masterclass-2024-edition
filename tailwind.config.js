@@ -1,4 +1,4 @@
-const animate = require('tailwindcss-animate')
+import animate from 'tailwindcss-animate'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -11,6 +11,8 @@ module.exports = {
     './components/**/*.{ts,tsx,vue}',
     './app/**/*.{ts,tsx,vue}',
     './src/**/*.{ts,tsx,vue}',
+    './formkit.config.ts',
+    './formkit.theme.ts',
   ],
 
   theme: {

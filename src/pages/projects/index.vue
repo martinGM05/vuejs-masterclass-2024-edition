@@ -1,22 +1,31 @@
 <script setup lang="ts">
-import { useErrorStore } from '@/stores/error'
-import { projectsQuery, type Projects } from '@/utils/supaQueries'
+import { useCollabs } from '@/composables/collabs'
+import { useProjectsStore } from '@/stores/loaders/projects'
 import { columns } from '@/utils/tableColumns/projectsColumns'
 
 usePageStore().pageData.title = 'Projects'
 
-const projects = ref<Projects | null>(null)
-const getProjects = async () => {
-  const { data, error, status } = await projectsQuery
-
-  if (error) useErrorStore().setError({ error, customCode: status })
-
-  projects.value = data
-}
+const projectsLoader = useProjectsStore()
+const { projects } = storeToRefs(projectsLoader)
+const { getProjects } = projectsLoader
 
 await getProjects()
+
+const { getGroupedCollabs, groupedCollabs } = useCollabs()
+
+getGroupedCollabs(projects.value ?? [])
+
+const columnsWithCollabs = computed(() => columns(groupedCollabs))
+
+useMeta({
+  title: 'Projects | Pulse',
+  description: {
+    name: 'description',
+    content: 'Pulse is a project management tool that helps you manage your projects.',
+  },
+})
 </script>
 
 <template>
-  <DataTable v-if="projects" :columns="columns" :data="projects" />
+  <DataTable v-if="projects" :columns="columnsWithCollabs" :data="projects" />
 </template>
